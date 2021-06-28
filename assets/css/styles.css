@@ -1,0 +1,32 @@
+
+body{
+	margin: 32px 24px;
+}
+#fotos{
+	background-color: #fff;
+}
+#fotos img{
+	margin-right: 1%;
+	margin-bottom: 1%;
+	width: 10%;
+}
+#foto img{
+	width: 98%;
+	margin-top: 0px;
+}
+#fotobeschrijving{
+	margin-bottom: 24px;
+}
+.bbimgs img, #wdimg img{
+	width: 98%;
+	margin-bottom: 24px;
+}
+h1,h2,h3,h4{
+	font-family: "Times New Roman";
+}
+h3{
+	margin-top: 24px;
+}
+.wikipedialink{
+	margin-top: 12px;
+}

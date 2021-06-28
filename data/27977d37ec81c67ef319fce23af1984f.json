@@ -1,0 +1,82 @@
+{
+  "head" : {
+    "vars" : [ "gebied", "gebiedLabel", "afb", "coords", "m2", "klasse", "klasseLabel", "article" ]
+  },
+  "results" : {
+    "bindings" : [ {
+      "gebied" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q1419691"
+      },
+      "article" : {
+        "type" : "uri",
+        "value" : "https://nl.wikipedia.org/wiki/Vondelpark"
+      },
+      "m2" : {
+        "datatype" : "http://www.w3.org/2001/XMLSchema#decimal",
+        "type" : "literal",
+        "value" : "480000"
+      },
+      "coords" : {
+        "datatype" : "http://www.opengis.net/ont/geosparql#wktLiteral",
+        "type" : "literal",
+        "value" : "Point(4.866388888 52.356944444)"
+      },
+      "klasse" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q22698"
+      },
+      "afb" : {
+        "type" : "uri",
+        "value" : "http://commons.wikimedia.org/wiki/Special:FilePath/Vondelpark.jpg"
+      },
+      "gebiedLabel" : {
+        "xml:lang" : "nl",
+        "type" : "literal",
+        "value" : "Vondelpark"
+      },
+      "klasseLabel" : {
+        "xml:lang" : "nl",
+        "type" : "literal",
+        "value" : "park"
+      }
+    }, {
+      "gebied" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q1419691"
+      },
+      "article" : {
+        "type" : "uri",
+        "value" : "https://nl.wikipedia.org/wiki/Vondelpark"
+      },
+      "m2" : {
+        "datatype" : "http://www.w3.org/2001/XMLSchema#decimal",
+        "type" : "literal",
+        "value" : "480000"
+      },
+      "coords" : {
+        "datatype" : "http://www.opengis.net/ont/geosparql#wktLiteral",
+        "type" : "literal",
+        "value" : "Point(4.866388888 52.356944444)"
+      },
+      "klasse" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q1497375"
+      },
+      "afb" : {
+        "type" : "uri",
+        "value" : "http://commons.wikimedia.org/wiki/Special:FilePath/Vondelpark.jpg"
+      },
+      "gebiedLabel" : {
+        "xml:lang" : "nl",
+        "type" : "literal",
+        "value" : "Vondelpark"
+      },
+      "klasseLabel" : {
+        "xml:lang" : "nl",
+        "type" : "literal",
+        "value" : "complex bestaande uit meerdere objecten"
+      }
+    } ]
+  }
+}

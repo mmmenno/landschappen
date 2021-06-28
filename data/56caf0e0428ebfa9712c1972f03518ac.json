@@ -1,0 +1,82 @@
+{
+  "head" : {
+    "vars" : [ "gebied", "gebiedLabel", "afb", "coords", "m2", "klasse", "klasseLabel", "article" ]
+  },
+  "results" : {
+    "bindings" : [ {
+      "gebied" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q2370412"
+      },
+      "article" : {
+        "type" : "uri",
+        "value" : "https://nl.wikipedia.org/wiki/Spanderswoud"
+      },
+      "m2" : {
+        "datatype" : "http://www.w3.org/2001/XMLSchema#decimal",
+        "type" : "literal",
+        "value" : "2130000"
+      },
+      "coords" : {
+        "datatype" : "http://www.opengis.net/ont/geosparql#wktLiteral",
+        "type" : "literal",
+        "value" : "Point(5.152222222 52.248055555)"
+      },
+      "klasse" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q4421"
+      },
+      "afb" : {
+        "type" : "uri",
+        "value" : "http://commons.wikimedia.org/wiki/Special:FilePath/Spanderswoud.jpg"
+      },
+      "gebiedLabel" : {
+        "xml:lang" : "nl",
+        "type" : "literal",
+        "value" : "Spanderswoud"
+      },
+      "klasseLabel" : {
+        "xml:lang" : "nl",
+        "type" : "literal",
+        "value" : "bos"
+      }
+    }, {
+      "gebied" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q2370412"
+      },
+      "article" : {
+        "type" : "uri",
+        "value" : "https://nl.wikipedia.org/wiki/Spanderswoud"
+      },
+      "m2" : {
+        "datatype" : "http://www.w3.org/2001/XMLSchema#decimal",
+        "type" : "literal",
+        "value" : "2130000"
+      },
+      "coords" : {
+        "datatype" : "http://www.opengis.net/ont/geosparql#wktLiteral",
+        "type" : "literal",
+        "value" : "Point(5.152222222 52.248055555)"
+      },
+      "klasse" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q1286517"
+      },
+      "afb" : {
+        "type" : "uri",
+        "value" : "http://commons.wikimedia.org/wiki/Special:FilePath/Spanderswoud.jpg"
+      },
+      "gebiedLabel" : {
+        "xml:lang" : "nl",
+        "type" : "literal",
+        "value" : "Spanderswoud"
+      },
+      "klasseLabel" : {
+        "xml:lang" : "nl",
+        "type" : "literal",
+        "value" : "natuurlandschap"
+      }
+    } ]
+  }
+}

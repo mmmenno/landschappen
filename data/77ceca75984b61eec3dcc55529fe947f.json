@@ -1,0 +1,41 @@
+{
+  "head" : {
+    "vars" : [ "gebied", "gebiedLabel", "afb", "coords", "m2", "klasse", "klasseLabel", "article" ]
+  },
+  "results" : {
+    "bindings" : [ {
+      "gebied" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q2923688"
+      },
+      "article" : {
+        "type" : "uri",
+        "value" : "https://nl.wikipedia.org/wiki/De_Beer_(natuurgebied)"
+      },
+      "m2" : {
+        "datatype" : "http://www.w3.org/2001/XMLSchema#decimal",
+        "type" : "literal",
+        "value" : "13000000"
+      },
+      "coords" : {
+        "datatype" : "http://www.opengis.net/ont/geosparql#wktLiteral",
+        "type" : "literal",
+        "value" : "Point(4.098244 51.951461)"
+      },
+      "klasse" : {
+        "type" : "uri",
+        "value" : "http://www.wikidata.org/entity/Q1286517"
+      },
+      "gebiedLabel" : {
+        "xml:lang" : "nl",
+        "type" : "literal",
+        "value" : "De Beer"
+      },
+      "klasseLabel" : {
+        "xml:lang" : "nl",
+        "type" : "literal",
+        "value" : "natuurlandschap"
+      }
+    } ]
+  }
+}
