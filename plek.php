@@ -190,7 +190,7 @@ die;
 
 
     var topotijdreislayer = L.esri.tiledMapLayer({
-        url: 'https://tiles1.arcgis.com/tiles/nSZVuSZjHpEZZbRo/arcgis/rest/services/Historische_tijdreis_1950/flet wmts amersfoort coordinatenMapServer',
+        url: 'https://tiles1.arcgis.com/tiles/nSZVuSZjHpEZZbRo/arcgis/rest/services/Historische_tijdreis_1920/MapServer',
         maxZoom: 11,
         minZoom: 0,
     });
