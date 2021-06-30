@@ -96,6 +96,13 @@ die;
 			  	?>
 			</div>
 
+      <div id="works">
+        <?php foreach ($gebied['werken']  as $k => $work) { ?>
+          <a title="naar wikidata item" href="<?= $work['werk'] ?>" target="_blank"><img src="<?= $work['werkafb'] ?>?width=500"></a>
+          <p class="onderschrift"><?= $work['werklabel'] ?></p>
+        <?php } ?>
+      </div>
+
 		</div>
 		<div class="col-md-4">
 			
@@ -225,8 +232,9 @@ die;
 
   function showImages(feature){
   	//console.log(feature);
-  	var src = feature['properties']['foto'];
-  	var photoid = feature['properties']['obsid'];
+    var props = feature['properties'];
+  	var src = props['foto'];
+  	var photoid = props['obsid'];
   	//console.log(src);
   	var photo = $('<img>',{id: photoid, src: src});
   	photo.click(function(){
@@ -235,6 +243,14 @@ die;
   		src = src.replace('square','medium');
   		var bigphoto = $('<img>',{src: src});
   		$('#foto').append(bigphoto);
+
+      var phototxt = '';
+      if(props['taxonwp']!=null){
+        phototxt = '<a href="' + props['taxonwp'] + '">' + props['taxonname'] + '</a> - ';
+      }
+      phototxt += props['fotoattr'];
+      console.log(phototxt)
+      $('#fotobeschrijving').html(phototxt);
   	});
   	$('#fotos').append(photo);
   }

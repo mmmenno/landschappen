@@ -36,6 +36,8 @@
 
       <h3><a href="plek.php?qid=Q9900">De Beemster</a></h3>
 
+      <h3><a href="plek.php?qid=Q2052566">Dekkersduin</a></h3>
+
     </div>
     <div class="col-md-3">
       
@@ -66,7 +68,7 @@
 
       <h3><a href="plek.php?qid=Q2923688">De Beer</a></h3>
 
-      <h3><a href="plek.php?qid=Q1419691">Vondelpark</a></h3>
+      <h3><a href="plek.php?qid=Q2278595">Elswout</a></h3>
         
       
     </div>

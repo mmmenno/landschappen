@@ -17,7 +17,7 @@ body{
 #fotobeschrijving{
 	margin-bottom: 24px;
 }
-.bbimgs img, #wdimg img{
+.bbimgs img, #wdimg img, #works img{
 	width: 98%;
 	margin-bottom: 24px;
 }
@@ -29,4 +29,12 @@ h3{
 }
 .wikipedialink{
 	margin-top: 12px;
+}
+.onderschrift{
+	margin-top: -14px;
+	font-size: 12px;
+}
+#fotobeschrijving{
+	margin-top: 10px;
+	font-size: 12px;
 }

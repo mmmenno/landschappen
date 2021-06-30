@@ -35,7 +35,7 @@ $json = file_get_contents($url);
 
 $data = json_decode($json,true);
 
-//print_r($data['results'][0]);
+//print_r($data['results'][1]);
 
 $colprops = array("total_results"=>$data['total_results'], "page"=>$data['page'], "per_page"=>$data['per_page']);
 
@@ -44,12 +44,14 @@ $fc = array("type"=>"FeatureCollection", "properties"=>$colprops, "features"=>ar
 
 foreach ($data['results'] as $key => $value) {
 	$obs = array("type"=>"Feature");
-	//$obs['id'] = "http://resolver.clariah.org/hisgis/lp/geometry/" . $key;
 	$obs['geometry'] = $value['geojson'];
 	$props = array(
 		"datum" => $value['observed_on'],
 		"foto" => $value['photos'][0]['url'],
-		"obsid" => $value['id']
+		"fotoattr" => $value['photos'][0]['attribution'],
+		"obsid" => $value['id'],
+		"taxonname" => $value['taxon']['name'],
+		"taxonwp" => $value['taxon']['wikipedia_url']
 	);
 	$obs['properties'] = $props;
 	$fc['features'][] = $obs;
