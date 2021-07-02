@@ -62,13 +62,13 @@ die;
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
+<!-- Leaflet -->
+<!--
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet-src.js"></script>
+-->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css" integrity="sha512-wcw6ts8Anuw10Mzh9Ytw4pylW8+NAD4ch3lqm9lzAsTxg0GFeJgoAtxuCLREZSC5lUXdVyo/7yfsqFjQ4S+aKw==" crossorigin=""/>
-
   <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js" integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA==" crossorigin=""></script>
-
-
-  <!-- Esri Leaflet -->
-  <script src="https://unpkg.com/esri-leaflet@2.2.4/dist/esri-leaflet.js"></script>
 
   <!-- Proj4 and Proj4Leaflet -->
   <script src="https://unpkg.com/proj4@2.5.0/dist/proj4-src.js"></script>
@@ -178,8 +178,8 @@ die;
   }
 
   function createTopoTijdReisMap(){
-    center = [<?= $lat ?>, <?= $lon ?>];
-//    zoomlevel = <?= $zoomlevel ?>;
+    <?php $year = 1910; ?>
+    year = <?= $year ?>
 
     var RD = new L.Proj.CRS(
         'EPSG:28992',
@@ -188,26 +188,44 @@ die;
         resolutions: [3251.206502413005,1625.6032512065026,812.8016256032513,406.40081280162565,203.20040640081282,101.60020320040641, 50.800101600203206,25.400050800101603,12.700025400050801,6.350012700025401,3.1750063500127004,1.5875031750063502,0.7937515875031751,0.39687579375158755,0.19843789687579377,0.09921894843789689,0.04960947421894844]
     });
 
+    var topotijdreislayer = L.tileLayer('https://tiles.arcgis.com/tiles/nSZVuSZjHpEZZbRo/arcgis/rest/services/Historische_tijdreis_<?= $year ?>/MapServer/WMTS/tile/1.0.0/Historische_tijdreis_<?= $year ?>/default/default028mm/{z}/{y}/{x}',
+    { WMTS: false, attribution: 'Kadaster (TopoTijdReis <?= $year ?>)' });
 
-    var topotijdreislayer = L.esri.tiledMapLayer({
-        url: 'https://tiles1.arcgis.com/tiles/nSZVuSZjHpEZZbRo/arcgis/rest/services/Historische_tijdreis_1920/MapServer',
-        maxZoom: 11,
-        minZoom: 0,
-    });
-
-    var maptt = L.map('maptt', {
+    maptt = L.map('maptt', {
         crs: RD,
+        scrollWheelZoom: true,
+        zoomControl: false,
+        minZoom: 1,
+        maxZoom: 11,
         layers: [topotijdreislayer]
     });
+    L.control.zoom({
+        position: 'bottomright'
+    }).addTo(maptt);
+
+    // we set the bounds/extent/zoom in refreshMap to be the same as the bounds of the lat lon map
 
     //map view still gets set with Latitude/Longitude,
     //BUT the zoomlevel is now different (it uses the resolutions defined in our projection tileset above)
-    maptt.setView(center, 11);
+    //maptt.setView(center, 11);
     // OR use RD coordinates (28992), and reproject it to LatLon (4326)
     //maptt.setView(RD.projection.unproject(center), 10);
   }
 
   function refreshMap(){
+
+    // make sure the bounds of the maptt is (around) the same as the map (latlon) bounds
+    maptt.fitBounds(map.getBounds());
+
+    // attach the moveend and zoomend events so the maptt follows the map (NOT vice versa)
+    map.on('moveend', function() {
+      maptt.panTo(map.getCenter());
+    });
+    map.on('zoomend', function() {
+      maptt.fitBounds(map.getBounds());
+    });
+
+
     $.ajax({
       type: 'GET',
       url: 'geojson.php',
@@ -247,7 +265,6 @@ die;
         if(sightings.getLayers().length == 0){
           $('#fotobeschrijving').css("margin-bottom","0");
         }
-      
         //map.fitBounds(sightings.getBounds());
       },
       error: function() {
