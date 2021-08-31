@@ -13,9 +13,9 @@ $wpdata = json_decode($wpjson,true);
 
 $wptext = "Geen Nederlandstalig Wikipedia artikel gevonden";
 if(isset($wpdata['query']['pages'])){
-foreach ($wpdata['query']['pages'] as $key => $value) {
-	$wptext = $value['extract'];
-}
+	foreach ($wpdata['query']['pages'] as $key => $value) {
+		$wptext = $value['extract'];
+	}
 }
 
 $wptext = preg_replace("/===([^=]+)===/", "<h4>$1</h4>", $wptext);

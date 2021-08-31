@@ -24,9 +24,58 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md">
-      <h1>Landschap: natuur, kunst, historie</h1>
+      <h1>Weergaven van het Nederlandse landschap</h1>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <p>Op Wikidata worden veel Nederlandse landschappen beschreven: zo zijn er 129 Natura 2000-gebieden, 1400+ 'natuurlandschappen' en 500+ parken te vinden. In zo'n beschrijving zijn meestal coördinaten opgenomen en vaak ook een oppervlakte, zodat je een kaart op de juiste plek in kunt zoomen. Vaak is er ook een afbeelding (P18) aan gelinkt.</p>
+    </div>
+    <div class="col-md-3">
+      <p>Zowel op Wikidata als op Wikimedia Commons is het mogelijk (meer) afbeeldingen met een landschap te verbinden middels de 'beeldt af' (P180) property. Veel is dit nu nog niet gedaan, maar in de afgelopen jaren is een geweldige hoeveelheid afbeeldingen op Commons geplaatst en het leggen van zo'n verbinding is een fluitje van een cent.</p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-4">
+
+      
+      <form id="natuurlandschappen" action="plek.php">
+        <select name="qid">
+          
+
+
+        </select>
+      </form>
+
+    </div>
+    <div class="col-md-4">
+
+      
+      <form id="naturagebieden" action="plek.php">
+        <select name="qid">
+          
+
+
+        </select>
+      </form>
+
+    </div>
+    <div class="col-md-4">
+
+      
+      <form id="parken" action="plek.php">
+        <select name="qid">
+          
+
+
+        </select>
+      </form>
+
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-md-3">
 
@@ -75,7 +124,24 @@
   </div>
 </div>
 
+<script type="text/javascript">
+  
+  $("#natuurlandschappen select").load('parts/natuurlandschappen-select.php');
+  $("#natuurlandschappen select").change(function() {
+    $("#natuurlandschappen").submit();
+  });
 
+  $("#naturagebieden select").load('parts/naturagebieden-select.php');
+  $("#naturagebieden select").change(function() {
+    $("#naturagebieden").submit();
+  });
+
+  $("#parken select").load('parts/parken-select.php');
+  $("#parken select").change(function() {
+    $("#parken").submit();
+  });
+
+</script>
 
 </body>
 </html>

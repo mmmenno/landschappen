@@ -10,6 +10,7 @@ include("functions.php");
 include("wdinfo.php");
 include("wikipedia.php");
 include("beeldbankimgs.php");
+include("commons.php");
 
 $lat = $gebied['coords']['coordinates'][1];
 $lon = $gebied['coords']['coordinates'][0];
@@ -105,6 +106,7 @@ die;
           ?>
       </div>
 
+      <h3>werken op Wikidata</h3>
       <div id="works">
         <?php foreach ($gebied['werken']  as $k => $work) { ?>
           <a title="naar wikidata item" href="<?= $work['werk'] ?>" target="_blank"><img src="<?= $work['werkafb'] ?>?width=500"></a>
@@ -118,28 +120,40 @@ die;
         
         <div id="map" style="height: 400px; margin-bottom: 24px; width: 98%;"></div>
 
+
+        <h3>Topotijdreis ± 100 jaar geleden</h3>
         <div id="maptt" style="height: 400px; margin-bottom: 24px; width: 98%;"></div>
 
-      
+        <h3>gevonden bij erfgoedinstellingen</h3>
         <div class="bbimgs">
           <?php foreach ($bbimgs1 as $key => $bbimg) { ?>
             <a title="bekijk bij de instelling" href="<?= $bbimg[1] ?>" target="_blank"><img src="<?= $bbimg[2] ?>"></a>
           <?php } ?>
         </div>
-      
-
-    </div>
-    <div class="col-md-4">
-
-      <div id="fotos"></div>
-      <div id="foto"></div>
-      <div id="fotobeschrijving"></div>
         
-      <div class="bbimgs">
+        <div class="bbimgs">
           <?php foreach ($bbimgs2 as $key => $bbimg) { ?>
             <a title="bekijk bij de instelling" href="<?= $bbimg[1] ?>"><img src="<?= $bbimg[2] ?>"></a>
           <?php } ?>
         </div>
+
+    </div>
+    <div class="col-md-4">
+
+      <h3 style="margin-top: 0;">waarnemingen van <a target="_blank" href="https://www.gbif.org/">GBIF</a> api</h3>
+
+      <div id="fotos"></div>
+      <div id="foto"></div>
+      <div id="fotobeschrijving"></div>
+
+      <h3>van Wikimedia Commons</h3>
+      <div class="bbimgs">
+        <?php foreach ($commons as $key => $commonsimg) { ?>
+          <a title="bekijk op commons" href="<?= $commonsimg['beeld'] ?>"><img src="<?= $commonsimg['image'] ?>?width=500"></a>
+        <?php } ?>
+      </div>
+      
+      
         
       
     </div>
@@ -178,7 +192,7 @@ die;
   }
 
   function createTopoTijdReisMap(){
-    <?php $year = 1910; ?>
+    <?php $year = 1921; ?>
     year = <?= $year ?>
 
     var RD = new L.Proj.CRS(
@@ -226,10 +240,63 @@ die;
     });
 
 
+    /* // we used to get data from the iNaturalist api, but a bit slow
     $.ajax({
       type: 'GET',
       url: 'geojson.php',
       data: { lat: <?= $lat ?>, lon: <?= $lon ?>, radius: <?= $radius ?>, qid: "<?= $qid ?>" },
+      dataType: 'json',
+      success: function(jsonData) {
+        if (typeof sightings !== 'undefined') {
+          map.removeLayer(sightings);
+        }
+
+        sightings = L.geoJson(null, {
+          pointToLayer: function (feature, latlng) {                    
+              return new L.CircleMarker(latlng, {
+                  color: "#FC2211",
+                  radius:8,
+                  weight: 2,
+                  opacity: 0.8,
+                  fillOpacity: 0.3
+              });
+          },
+          style: function(feature) {
+            return {
+                color: getColor(feature.properties),
+                clickable: true
+            };
+          },
+          onEachFeature: function(feature, layer) {
+            showImages(feature);
+            layer.on({
+                click: whenClicked
+              });
+            }
+        }).addTo(map);
+
+        sightings.addData(jsonData).bringToFront();
+
+        if(sightings.getLayers().length == 0){
+          $('#fotobeschrijving').css("margin-bottom","0");
+        }
+        //map.fitBounds(sightings.getBounds());
+      },
+      error: function() {
+          console.log('Error loading data');
+      }
+
+    });
+    */
+
+    bounds = JSON.stringify(map.getBounds());
+    console.log(bounds);
+
+    // gbif api
+    $.ajax({
+      type: 'GET',
+      url: 'gbif-geojson.php',
+      data: { bounds: bounds, qid: "<?= $qid ?>" },
       dataType: 'json',
       success: function(jsonData) {
         if (typeof sightings !== 'undefined') {
@@ -304,8 +371,9 @@ die;
       $('#foto').append(bigphoto);
 
       var phototxt = '';
+      phototxt += props['datum'] + ", ";
       if(props['taxonwp']!=null){
-        phototxt = '<a href="' + props['taxonwp'] + '">' + props['taxonname'] + '</a> - ';
+        phototxt += '<a target="_blank" href="' + props['taxonwp'] + '">' + props['taxonname'] + '</a> - ';
       }
       phototxt += props['fotoattr'];
       console.log(phototxt)
